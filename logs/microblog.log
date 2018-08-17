@@ -1,0 +1,28 @@
+2018-08-16 16:51:08,103 ERROR: Exception on /ajax [GET] [in /home/pi/microblog/venv/lib/python3.5/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/pi/microblog/venv/lib/python3.5/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pi/microblog/venv/lib/python3.5/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/pi/microblog/venv/lib/python3.5/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/pi/microblog/venv/lib/python3.5/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/pi/microblog/venv/lib/python3.5/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/pi/microblog/venv/lib/python3.5/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/pi/microblog/venv/lib/python3.5/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/pi/microblog/app/routes.py", line 58, in ajax
+    return render_template('ajax.html', title='Start Recording', posts=posts.items, next_url=next_url, prev_url=prev_url)
+NameError: name 'posts' is not defined
+2018-08-16 16:51:38,332 INFO: Microblog startup [in /home/pi/microblog/app/__init__.py:49]
+2018-08-17 14:04:18,482 INFO: Microblog startup [in /home/pi/microblog/app/__init__.py:49]
+2018-08-17 14:08:53,248 INFO: Microblog startup [in /home/pi/microblog/app/__init__.py:49]
+2018-08-17 15:25:11,135 INFO: Microblog startup [in /home/pi/microblog/app/__init__.py:49]
+2018-08-17 16:24:44,329 INFO: Microblog startup [in /home/pi/microblog/app/__init__.py:49]
+2018-08-17 16:27:27,091 INFO: Microblog startup [in /home/pi/microblog/app/__init__.py:49]
+2018-08-17 16:29:45,607 INFO: Microblog startup [in /home/pi/microblog/app/__init__.py:49]
+2018-08-17 16:31:26,732 INFO: Microblog startup [in /home/pi/microblog/app/__init__.py:49]
+2018-08-17 16:33:38,169 INFO: Microblog startup [in /home/pi/microblog/app/__init__.py:49]
