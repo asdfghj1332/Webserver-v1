@@ -1,4 +1,4 @@
-2018-08-18 14:13:07,008 ERROR: Exception on /ajax [GET] [in /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/flask/app.py:1761]
+2018-08-18 14:40:41,985 ERROR: Exception on /ajax [GET] [in /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/flask/app.py:1761]
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -32,7 +32,7 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "/Users/jianrongtang/Webserver-v1/app/templates/ajax.html", line 32, in template
+  File "/Users/jianrongtang/Webserver-v1/app/templates/ajax.html", line 31, in template
     {% block app_content %}
   File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/jinja2/environment.py", line 497, in _parse
     return Parser(self, source, name, encode_filename(filename)).parse()
@@ -53,7 +53,8 @@ Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/jinja2/parser.py", line 59, in fail
     raise exc(msg, lineno, self.name, self.filename)
 jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
-2018-08-18 14:13:16,893 ERROR: Exception on /ajax [GET] [in /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/flask/app.py:1761]
+2018-08-18 14:47:12,226 INFO: Microblog startup [in /Users/jianrongtang/Webserver-v1/app/__init__.py:49]
+2018-08-18 14:47:15,222 ERROR: Exception on /ajax [GET] [in /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/flask/app.py:1761]
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -87,7 +88,7 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "/Users/jianrongtang/Webserver-v1/app/templates/ajax.html", line 32, in template
+  File "/Users/jianrongtang/Webserver-v1/app/templates/ajax.html", line 31, in template
     {% block app_content %}
   File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/jinja2/environment.py", line 497, in _parse
     return Parser(self, source, name, encode_filename(filename)).parse()
@@ -108,5 +109,4 @@ Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/jinja2/parser.py", line 59, in fail
     raise exc(msg, lineno, self.name, self.filename)
 jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
-2018-08-18 14:14:29,829 INFO: Microblog startup [in /Users/jianrongtang/Webserver-v1/app/__init__.py:49]
-2018-08-18 14:16:25,563 INFO: Microblog startup [in /Users/jianrongtang/Webserver-v1/app/__init__.py:49]
+2018-08-18 14:57:42,283 INFO: Microblog startup [in /Users/jianrongtang/Webserver-v1/app/__init__.py:49]
