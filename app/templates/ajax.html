@@ -1,15 +1,27 @@
 {% extends "base.html" %}
+
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
 
-<div id="demo">
 <h1>Welcome to Trigger Camera!</h1>
 
-<p>Click the link below to start recording!</p>
+<p>Click the link below to start listening!</p>
 
-<a href="/app/templates/start_recording.php">Start Recording!</a>
+<input type="button" id='script' name="scriptbutton" value=" Run Script " onclick="goPython()">
 
-</div>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<script>
+    function goPython(){
+        $.ajax({
+          type:
+          url: "/app/templates/trigger_camera.py",
+          context: document.body
+        }).done(function() {
+         alert('Listening for Python Script');;
+        });
+    }
+</script>
 
 {% endblock %}
