@@ -1,3 +1,3 @@
 <?php
-    shell_exec("trigger_camera.py")
+    exec("/Webserver-1/app/templates/trigger_camera.py");
 ?>

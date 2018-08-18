@@ -57,6 +57,11 @@ def explore():
 def ajax():
     return render_template('ajax.html', title='Start Recording')
 
+@app.route('/recording')
+@login_required
+def recording():
+    return render_template('recording.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:

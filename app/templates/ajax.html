@@ -2,16 +2,13 @@
 
 {% import 'bootstrap/wtf.html' as wtf %}
 
-{% block app_content %}
-
 <h1>Welcome to Trigger Camera!</h1>
 
 <p>Click the link below to start listening!</p>
 
-<button type="submit" id="script-button">
-    Start Listening
-</button>
+<button type="button" id="script-button" onclick="location.href='recording.html';runScript"> Start Listening </button>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 function runScript() {
     var request = new XMLHttpRequest();
@@ -31,3 +28,5 @@ function runScript() {
 
 document.getElementById('script-button').onclick = runScript;
 </script>
+
+{% block app_content %}
