@@ -8,7 +8,7 @@
 
 <p>Click the link below to start listening!</p>
 
-<input type="button" id='script' name="script-button" value=" Run Script " onclick="runScript()">
+<input type="button" id='script' name="script-button" value=" Start Listening " onclick="runScript()">
 
 <script>
     function runScript() {
@@ -22,12 +22,10 @@
                 }
             }
         };
-        request.open('POST', 'trigger_camera.py', true);
+        request.open('POST', '/run_camera', true);
         request.send(null);
         return false;  // Prevent the default button action
     };
-    
-    document.getElementById('script-button').onclick = runScript;
 </script>
 
 {% endblock %}

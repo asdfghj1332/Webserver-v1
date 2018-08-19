@@ -7,7 +7,36 @@ from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, \
     ResetPasswordRequestForm, ResetPasswordForm
 from app.models import User, Post
 from app.email import send_password_reset_email
+import os, time, threading
+import picamera as camera
+import RPi.GPIO as GPIO
+import configparser
 
+# Parse config.ini for camera settings
+def ParseConfigFile():
+    print('\ttrigger_camera.ParseConfigFile() is reading config file from config.ini')
+    Config = configparser.ConfigParser()
+    Config.read('/home/pi/trigger_camera/config.ini')
+    Config.sections()
+    config['system']['videolength'] = int(Config.get('system','videolength'))
+    config['system']['videoname'] = Config.get('system','videoname')
+    config['camera']['fps'] = int(Config.get('camera','fps'))
+    resolution = Config.get('camera','resolution').split(',')
+    config['camera']['resolution'] = (int(resolution[0]), int(resolution[1]))		
+    config['trigger']['triggerpin'] = int(Config.get('trigger','triggerpin'))
+    print('\tdone reading config file')
+    # If trigger is detected, record video
+def triggerPinCallback(pin):
+    pinIsUp = GPIO.input(pin)
+    if pinIsUp:
+        recordTime(os.path.join(savepath,config['system']['videoname']),config['system']['videolength'])
+    # Record video for set amount of time (s)
+def recordTime(name,time):
+    print('\ttriggercamera is recording video')        
+    # Record video to the file name specified
+    camera.start_recording(name, format='h264')
+    camera.wait_recording(time)
+    camera.stop_recording()
 
 @app.before_request
 def before_request():
@@ -57,10 +86,36 @@ def explore():
 def ajax():
     return render_template('ajax.html', title='Start Recording')
 
-@app.route('/recording')
+@app.route('/run_camera', methods=['POST'])
 @login_required
-def recording():
-    return render_template('recording.html')
+def run_camera():
+    savepath = '/home/pi/video/' + time.strftime('%Y%m%d') + '/'
+    if not os.path.exists(savepath):
+            print('\ttrigger_camera is making output directory: %s\n' % savepath)
+            os.makedirs(savepath)
+    #1. set up default setting
+    config = {}
+    config['system'] = {}
+    config['system']['videolength'] = 30
+    config['system']['videoname'] = 'test'
+    config['camera'] = {}
+    config['camera']['fps'] = 30
+    config['camera']['resolution'] = (1296, 730)
+    config['trigger'] = {}
+    config['trigger']['triggerpin'] = 27
+    #2. read setting from config.ini
+    ParseConfigFile()
+    #3. set up trigger camera
+    camera.resolution = config['camera']['resolution']
+    camera.framerate = config['camera']['fps']
+    trigger = config['trigger']['triggerpin']
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)	 # set up BCM GPIO numbering
+    GPIO.setup(trigger, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.remove_event_detect(trigger)
+    #4. wait for trigger pulse from acquisition device, then record video
+    GPIO.add_event_detect(trigger, GPIO.RISING, callback=triggerPinCallback, bouncetime=200)
+    return render_template('success.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

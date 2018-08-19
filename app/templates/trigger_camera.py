@@ -20,7 +20,7 @@ class Trigger_Camera(threading.Thread):
         if not os.path.exists(self.savepath):
                 print('\ttrigger_camera is making output directory: %s\n' % self.savepath)
                 os.makedirs(self.savepath)
-    		#1. set up default setting
+    	#1. set up default setting
         self.config = {}
         self.config['system'] = {}
         self.config['system']['videolength'] = 30
